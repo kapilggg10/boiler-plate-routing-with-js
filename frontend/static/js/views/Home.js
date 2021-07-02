@@ -7,8 +7,12 @@ export default class extends AbstractView {
   }
 
   async getHtml() {
-    return `
-      <h1> Welcome to Home</h1>
-    `
+    try {
+      const res = await fetch('/static/html/home.html');
+      const data = await res.text();
+      return data;
+    } catch (error) {
+      return "Something Went Wrong!";
+    }
   }
 }
